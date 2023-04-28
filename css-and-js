@@ -1,0 +1,34 @@
+---------------- Add this css into Custom CSS Modal ---------------- 
+
+.btn-mask {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+button[data-pf-type="ProductATC"] {
+	position: relative;
+}
+
+
+---------------- Add this custom javascript into Custom Javascript Modal ---------------- 
+
+let interval = setInterval(() => {
+  const masks = document.querySelectorAll('.btn-mask') || [];
+  if(!masks.length) {
+	$('<div class="btn-mask"></div>').appendTo('button[data-pf-type="ProductATC"]');
+	const $masks = document.querySelectorAll('.btn-mask') || [];
+	$masks.forEach(mask => {
+	  mask.onclick = () => {
+		mask.closest('button').click();
+	  }
+	})
+  }else {
+	clearInterval(interval);
+  }
+}, 100)
+
